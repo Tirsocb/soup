@@ -2,6 +2,21 @@
 from bs4 import BeautifulSoup
 import requests, sys, csv, json
 
+
+def Navigate(zelda):
+    try:
+        html = requests.get(zelda).text
+        print("success")
+
+    except:
+
+        sys.exit(1)
+
+    maruchan = BeautifulSoup(html, "html.parser")
+
+    return maruchan
+
+
 url = "http://ufm.edu/Portal"
 # Make a GET request to fetch the raw HTML content
 try:
@@ -79,8 +94,27 @@ Separador_Inciso()
 
 
 def Estudios():
+    link = "http://ufm.edu/Estudios"
+    ramen = Navigate(link)
     Separador()
     Nombre()
     Separador()
+    topmenu = ramen.find('div', {"id": "topmenu"})
+    print(f"top menu items: {topmenu.text}")
+    Separador()
+    estudios = ramen.find_all("div", {"class": "estudios"})
+    print(f"Estudios disponibles: {estudios} \n")
+    Separador()
+    leftbar = ramen.find("div", {"class": "leftbar"}).find_all("li")
+    print(f"leftbar list Items: {leftbar}")
+    Separador()
+    redes = ramen.find("div", {"class": "social pull-right"}).find_all("a")
+    print(f"redes sociales: {redes}")
+    Separador()
+    counter = 0
+    for a in ramen.find_all("a"):
+        counter = counter + 1
+    print(f"Number of <a> tags: {counter}")
 
-Portal()
+Estudios()
+# Portal()
