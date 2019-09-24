@@ -96,9 +96,6 @@ def Portal():
     Separador_Inciso()
 
 
-
-
-
 def Estudios():
     Separador_Inciso()
     print("Estudios")
@@ -143,8 +140,8 @@ def CS():
     open('Facultad_de_Ciencias_Economicas.png', 'wb')
     print("la foto se encuentra en el proyecto")
     Separador()
-    print("meta" + str(ramen.find("meta",  property="og:title")))
-    print("meta" + str(ramen.find("meta",  property="og:description")))
+    print("meta" + str(ramen.find("meta", property="og:title")))
+    print("meta" + str(ramen.find("meta", property="og:description")))
     Separador()
     counter = 0
     for a in ramen.find_all("a"):
@@ -156,6 +153,46 @@ def CS():
         counter = counter + 1
     print(f"Number of <div> tags: {counter}")
     Separador_Inciso()
+
+
+def All():
+    return Portal(), Estudios(), CS()
+
+
+def Part1():
+    return Portal()
+
+
+def Part2():
+    return Estudios()
+
+
+def Part3():
+    return CS()
+
+
+a = True
+while a:
+    print("python3 soup.py <- correr todo")
+    print("python3 soup.py 1 <- correr parte 1")
+    print("python3 soup.py 2 <- correr parte 2")
+    print("python3 soup.py 3 <- correr parte 3")
+    print("exit <- cerrar programa")
+    picker = input()
+    if picker == "python3 soup.py":
+        All()
+        a = True
+    elif picker == "python3 soup.py 1":
+        Part1()
+        a = True
+    elif picker == "python3 soup.py 2":
+        Part2()
+        a = True
+    elif picker == "python3 soup.py 3":
+        Part3()
+        a = True
+    elif picker == "exit":
+        a = False
 # CS()
 # Estudios()
 # Portal()
