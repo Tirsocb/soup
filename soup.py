@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+from idlelib.multicall import r
+
 from bs4 import BeautifulSoup
 import requests, sys, csv, json
 
@@ -53,9 +55,12 @@ def Nombre():
 
 def Portal():
     Separador_Inciso()
+    print("Portal")
+    Separador_Inciso()
+    Separador()
     Nombre()
     Separador()
-    print("1. Portal")
+
     Separador()
     print(f"GET the title and print it: {soup.title.string}")
     Separador()
@@ -88,12 +93,16 @@ def Portal():
     for a in soup.find_all("a"):
         counter = counter + 1
     print(f"Number of <a> tags: {counter}")
+    Separador_Inciso()
 
 
-Separador_Inciso()
+
 
 
 def Estudios():
+    Separador_Inciso()
+    print("Estudios")
+    Separador_Inciso()
     link = "http://ufm.edu/Estudios"
     ramen = Navigate(link)
     Separador()
@@ -115,6 +124,38 @@ def Estudios():
     for a in ramen.find_all("a"):
         counter = counter + 1
     print(f"Number of <a> tags: {counter}")
+    Separador_Inciso()
 
-Estudios()
+
+def CS():
+    Separador_Inciso()
+    print("CS")
+    Separador_Inciso()
+    link = "https://fce.ufm.edu/carrera/cs/"
+    ramen = Navigate(link)
+    Separador()
+    Nombre()
+    Separador()
+    print(f"title : {ramen.title.string}")
+    Separador()
+    foto = ramen.find("img", {"class": "fl-photo-img wp-image-500 size-full"})
+    print(f"foto: {foto}")
+    open('Facultad_de_Ciencias_Economicas.png', 'wb')
+    print("la foto se encuentra en el proyecto")
+    Separador()
+    print("meta" + str(ramen.find("meta",  property="og:title")))
+    print("meta" + str(ramen.find("meta",  property="og:description")))
+    Separador()
+    counter = 0
+    for a in ramen.find_all("a"):
+        counter = counter + 1
+    print(f"Number of <a> tags: {counter}")
+    Separador()
+    counter = 0
+    for a in ramen.find_all("div"):
+        counter = counter + 1
+    print(f"Number of <div> tags: {counter}")
+    Separador_Inciso()
+# CS()
+# Estudios()
 # Portal()
